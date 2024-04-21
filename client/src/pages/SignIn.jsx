@@ -58,6 +58,7 @@ export default function SignIn() {
           placeholder="password"
           className="border p-3 rounded-lg"
           id="password"
+          autoComplete="on"
           onChange={handleChange}
         />
 
