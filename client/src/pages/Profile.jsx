@@ -20,6 +20,8 @@ import {
   signOutUserSuccess,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import createListing from "./createListing";
 
 const Profile = () => {
   const fileRef = useRef(null);
@@ -30,6 +32,7 @@ const Profile = () => {
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (file) {
@@ -122,6 +125,10 @@ const Profile = () => {
     }
   };
 
+  const handleListing = async () => {
+    navigate("create-listing");
+  };
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -198,6 +205,12 @@ const Profile = () => {
       <p className="text-green-700 mt-5">
         {updateSuccess ? "user is updated successfully" : ""}
       </p>
+      <button
+        onClick={handleListing}
+        className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 w-[32rem] "
+      >
+        Create Listing
+      </button>
     </div>
   );
 };
