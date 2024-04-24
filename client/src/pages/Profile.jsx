@@ -20,7 +20,7 @@ import {
   signOutUserSuccess,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const fileRef = useRef(null);
@@ -31,7 +31,6 @@ const Profile = () => {
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (file) {
