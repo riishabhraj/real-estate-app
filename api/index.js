@@ -5,6 +5,7 @@ import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 const app = express();
 dotenv.config();
 
@@ -22,6 +23,8 @@ mongoose
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(3000, () => {
   console.log("hey");
