@@ -205,6 +205,7 @@ const Profile = () => {
       <p className="text-green-700 mt-5">
         {updateSuccess ? "user is updated successfully" : ""}
       </p>
+      <span className="text-green-700 cursor-pointer text-center">show listings</span>
     </div>
   );
 };
