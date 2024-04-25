@@ -29,7 +29,6 @@ export const updateUser = async (req, res, next) => {
       { new: true }
     );
     const { password, ...rest } = updatedUser._doc;
-
     res.status(200).json(rest);
   } catch (error) {
     next(error);
@@ -58,5 +57,13 @@ export const getUserListings = async (req, res, next) => {
     }
   } else {
     return next(errorHandler(401, "you can only view your own listings"));
+  }
+};
+
+export const deleteListings = async (req, res, next) => {
+  if (req.body.id === req.params.id) {
+    try {
+      const listing = await findByIdAndDelete({});
+    } catch (error) {}
   }
 };
