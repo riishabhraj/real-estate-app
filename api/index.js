@@ -6,15 +6,14 @@ import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import path from 'path'
+import path from "path";
 const app = express();
 dotenv.config();
 
+const PORT = 3000;
+
 mongoose
-  .connect("mongodb://127.0.0.1:27017/real-estate")
-  //   .connect
-  // "mongodb+srv://admin:admin@cluster0.3dhqvsx.mongodb.net/real-estate-backend"
-  //   ()
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("connected to mongoDB");
   })
@@ -29,19 +28,19 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.listen(3000, () => {
-  console.log("hey");
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT} `);
 });
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
 
-app.use(express.static(path.join(__dirname, '/client/dist')))
+app.use(express.static(path.join(__dirname, "/client/dist")));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client','dist','index.html'))
-})
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
