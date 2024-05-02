@@ -60,14 +60,6 @@ export const getUserListings = async (req, res, next) => {
   }
 };
 
-export const deleteListings = async (req, res, next) => {
-  if (req.body.id === req.params.id) {
-    try {
-      const listing = await findByIdAndDelete({});
-    } catch (error) {}
-  }
-};
-
 export const getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
