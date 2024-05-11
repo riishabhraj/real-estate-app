@@ -25,8 +25,6 @@ const ShowListing = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { listingId } = useParams();
 
-  console.log(currentUser);
-
   useEffect(() => {
     const fetchListing = async () => {
       try {
@@ -39,7 +37,6 @@ const ShowListing = () => {
           return;
         }
         setListing(data);
-        console.log(data);
         setLoading(false);
         setError(false);
       } catch (error) {
